@@ -12,6 +12,10 @@ data = pd.read_csv('datasetlast.csv')
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
+@app.get("/")
+def index():
+    return("Prediction Analysis for donation campagin sucess")
+
 # Define the route for making predictions
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -41,4 +45,4 @@ def predict():
         return jsonify({"prediction": predicted_attendees[0]})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=3001,debug=True)
